@@ -12,6 +12,7 @@ import { InputTextModule } from 'primeng/inputtext';
 import { SelectButtonModule } from 'primeng/selectbutton';
 import { TableModule } from 'primeng/table';
 import { TooltipModule } from 'primeng/tooltip';
+import { SharedModule } from '../shared/shared.module';
 
 
 
@@ -24,7 +25,7 @@ import { TooltipModule } from 'primeng/tooltip';
   imports: [
     CommonModule,
     FormsModule,
-
+    SharedModule,
     InputNumberModule,
     InputTextModule,
     ButtonModule,

@@ -9,6 +9,7 @@ import { InputMaskModule } from 'primeng/inputmask';
 import { InputTextModule } from 'primeng/inputtext';
 import { TableModule } from 'primeng/table';
 import { TooltipModule } from 'primeng/tooltip';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,7 @@ import { TooltipModule } from 'primeng/tooltip';
   imports: [
     CommonModule,
     FormsModule,
-
+    SharedModule,
     InputTextModule,
     ButtonModule,
     TableModule,
