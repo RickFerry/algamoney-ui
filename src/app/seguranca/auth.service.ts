@@ -35,10 +35,8 @@ export class AuthService {
   }
 
   private carregarToken() {
-    const tk = this.jwt.tokenGetter();
-    if (tk) {
-      const token = localStorage.getItem('token');
-      this.armazenaToken(JSON.stringify(token));
+    if (this.jwt.tokenGetter()) {
+      this.armazenaToken(JSON.stringify(this.jwt.tokenGetter()));
     }
   }
 }
