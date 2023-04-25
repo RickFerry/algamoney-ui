@@ -10,15 +10,16 @@ export class AuthService {
 
   constructor(private http: HttpClient) { }
 
-  async login(usuario: string, senha: string): Promise<void> {
+  async login(usuario: string, senha: string): Promise<any> {
     const headers = new HttpHeaders({'Content-Type':'application/json'})
     const body = {"email":usuario, "senha":senha}
     try {
-      const token = await this.http.post(this.loginUrl, body, { headers })
-        .toPromise();
-      console.log(token);
-    } catch (response_1) {
-      console.log(response_1);
+      return this.http.post(this.loginUrl, body, { headers })
+      .subscribe((resp: any) => {
+        console.log(resp['token'])
+        resp['token']})
+    } catch (response) {
+      console.log(response);
     }
   }
 }
