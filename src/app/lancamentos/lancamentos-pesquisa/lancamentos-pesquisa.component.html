@@ -11,7 +11,7 @@
           pInputText
           type="text"
           name="descricao"
-          [(ngModel)]="descricao"
+          [(ngModel)]="filtro.descricao"
         />
       </div>
 
@@ -21,7 +21,7 @@
           dateFormat="dd/mm/yy"
           [inputStyle]="{ width: '95px' }"
           name="VencimentoInicio"
-          [(ngModel)]="dataVencimentoInicio"
+          [(ngModel)]="filtro.dataVencimentoInicio"
         ></p-calendar>
 
         <label class="label">até</label>
@@ -29,7 +29,7 @@
           dateFormat="dd/mm/yy"
           [inputStyle]="{ width: '95px' }"
           name="VencimentoFim"
-          [(ngModel)]="dataVencimentoFim"
+          [(ngModel)]="filtro.dataVencimentoFim"
         ></p-calendar>
       </div>
 
@@ -44,8 +44,10 @@
       <p-table
         [value]="lancamentos"
         [paginator]="true"
-        [rows]="5"
-        [responsive]="true"
+        [rows]="filtro.itensPorPagina"
+        [responsive]="true" [lazy]="true"
+        [totalRecords]="totalRegistro"
+        (onLazyLoad)="aoMudarPagina($event)"
       >
         <ng-template pTemplate="header">
           <tr>
