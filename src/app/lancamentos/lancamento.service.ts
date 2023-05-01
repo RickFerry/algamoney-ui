@@ -39,7 +39,6 @@ export class LancamentoService {
         moment(filtro.dataVencimentoFim).format('YYYY-MM-DD')
       );
     }
-    const resp = await this.http.get(this.urlApi, { params }).toPromise();
-    return resp;
+    return await this.http.get(this.urlApi, { params }).toPromise();
   }
 }

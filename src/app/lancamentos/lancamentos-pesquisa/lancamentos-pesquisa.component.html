@@ -44,8 +44,9 @@
       <p-table
         [value]="lancamentos"
         [paginator]="true"
+        [responsive]="true"
+        [lazy]="true"
         [rows]="filtro.itensPorPagina"
-        [responsive]="true" [lazy]="true"
         [totalRecords]="totalRegistro"
         (onLazyLoad)="aoMudarPagina($event)"
       >
