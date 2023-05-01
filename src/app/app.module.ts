@@ -5,14 +5,11 @@ import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
 import { SegurancaModule } from './seguranca/seguranca.module';
 
-import { JwtModule } from '@auth0/angular-jwt';
 import { AppRoutingModule } from './app-routing.module';
+import { LancamentoService } from './lancamentos/lancamento.service';
 import { LancamentosModule } from './lancamentos/lancamentos.module';
 import { PessoasModule } from './pessoas/pessoas.module';
 
-export function tokenGetter() {
-  return localStorage.getItem('token');
-}
 
 @NgModule({
   declarations: [AppComponent],
@@ -23,16 +20,9 @@ export function tokenGetter() {
     LancamentosModule,
     PessoasModule,
     CoreModule,
-    SegurancaModule,
-    JwtModule.forRoot({
-      config: {
-        tokenGetter: tokenGetter,
-        allowedDomains: [''],
-        disallowedRoutes: [''],
-      },
-    }),
+    SegurancaModule
   ],
-  providers: [],
+  providers: [LancamentoService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
