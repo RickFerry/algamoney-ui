@@ -35,7 +35,11 @@ export class LancamentosPesquisaComponent implements OnInit {
 
   delete(lancamento: any){
     this.service.delete(lancamento.id).then(() => {
-      this.gride.first = 0;
+      if (this.gride.first === 0) {
+        this.listar();
+      }else{
+        this.gride.first = 0;
+      }
     })
   }
 }
