@@ -49,6 +49,7 @@
         [rows]="filtro.itensPorPagina"
         [totalRecords]="totalRegistro"
         (onLazyLoad)="aoMudarPagina($event)"
+        #tabela
       >
         <ng-template pTemplate="header">
           <tr>
@@ -104,6 +105,7 @@
                 icon="pi pi-trash"
                 pTooltip="Excluir"
                 tooltipPosition="top"
+                (click)="delete(lancamentos)"
               ></button>
             </td>
           </tr>

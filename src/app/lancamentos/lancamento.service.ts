@@ -41,4 +41,8 @@ export class LancamentoService {
     }
     return await this.http.get(this.urlApi, { params }).toPromise();
   }
+
+  async delete(codigo: number): Promise<any>{
+      return await this.http.delete(`${this.urlApi}/${codigo}`).toPromise();
+  }
 }
