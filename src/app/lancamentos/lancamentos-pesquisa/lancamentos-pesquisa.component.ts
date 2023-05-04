@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { LancamentoFiltro, LancamentoService } from '../lancamento.service';
-import { LazyLoadEvent } from 'primeng/api';
+import { LazyLoadEvent, ConfirmationService } from 'primeng/api';
 import { every } from 'rxjs';
 
 @Component({
@@ -14,7 +14,7 @@ export class LancamentosPesquisaComponent implements OnInit {
   filtro = new LancamentoFiltro();
   @ViewChild('tabela') gride: any;
 
-  constructor(private service: LancamentoService) {}
+  constructor(private service: LancamentoService, private configService: ConfirmationService) {}
 
   ngOnInit(): void {}
 
@@ -34,11 +34,16 @@ export class LancamentosPesquisaComponent implements OnInit {
   }
 
   delete(lancamento: any){
-    this.service.delete(lancamento.id).then(() => {
-      if (this.gride.first === 0) {
-        this.listar();
-      }else{
-        this.gride.first = 0;
+    this.configService.confirm({
+      message: `Deseja realmente excluir o lancamento: ${lancamento.nome}?`,
+      accept: () => {
+        this.service.delete(lancamento.id).then(() => {
+          if (this.gride.first === 0) {
+            this.listar();
+          }else{
+            this.gride.first = 0;
+          }
+        })
       }
     })
   }
