@@ -7,27 +7,19 @@
   <app-lancamento-cadastro></app-lancamento-cadastro>
 -->
 <div class="card flex justify-content-center gap-2">
-  <p-toast></p-toast>
-  <p-confirmDialog [style]="{ width: '50vw' }" #confirmacao>
-    <p-button
-      (click)="(confirmacao.accept)"
-      icon="pi pi-check"
-      label="Confirm"
-    ></p-button>
-    <p-button
-      (click)="(confirmacao.reject)"
-      icon="pi pi-times"
-      label="Delete"
-      class="p-button-danger"
-    ></p-button>
-  </p-confirmDialog>
+  <p-toast>
+    <p-confirmDialog [style]="{ width: '50vw' }" #confirmacao>
+      <p-button
+        (click)="(confirmacao.accept)"
+        icon="pi pi-check"
+        label="Sim"
+      ></p-button>
+      <p-button
+        (click)="(confirmacao.reject)"
+        icon="pi pi-times"
+        label="Não"
+        class="p-button-danger"
+      ></p-button>
+    </p-confirmDialog>
+  </p-toast>
 </div>
-
-<!-- <p-confirmDialog header="Confirmação" icon="fa fa-question-circle" #confirmacao>
-  <p-footer>
-    <button type="button" pButton icon="fa-check" label="Sim"
-    (click)="confirmacao.accept"></button>
-    <button type="button" pButton icon="fa-times" label="Não"
-    (click)="confirmacao.reject"></button>
-  </p-footer>
-</p-confirmDialog> -->

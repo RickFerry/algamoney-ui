@@ -1,5 +1,9 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { ConfirmationService, LazyLoadEvent, MessageService } from 'primeng/api';
+import {
+  ConfirmationService,
+  LazyLoadEvent,
+  MessageService,
+} from 'primeng/api';
 import { LancamentoFiltro, LancamentoService } from '../lancamento.service';
 
 @Component({
@@ -48,7 +52,11 @@ export class LancamentosPesquisaComponent implements OnInit {
           } else {
             this.gride.first = 0;
           }
-          this.msgService.add({ severity: 'info', summary: 'Confirmed', detail: 'Sucesso!' });
+          this.msgService.add({
+            severity: 'info',
+            summary: 'Confirmed',
+            detail: 'Sucesso!',
+          });
         });
       },
     });
