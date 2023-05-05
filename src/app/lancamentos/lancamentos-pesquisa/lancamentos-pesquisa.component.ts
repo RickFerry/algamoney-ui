@@ -1,3 +1,4 @@
+import { ErrorHandlerService } from './../../core/error-handler.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import {
   ConfirmationService,
@@ -20,19 +21,23 @@ export class LancamentosPesquisaComponent implements OnInit {
   constructor(
     private service: LancamentoService,
     private confirmService: ConfirmationService,
-    private msgService: MessageService
+    private msgService: MessageService,
+    private error: ErrorHandlerService
   ) {}
 
   ngOnInit(): void {}
 
   listar(pagina = 0) {
     this.filtro.pagina = pagina;
-    this.service.listar(this.filtro).then((lanc) => {
-      console.log(lanc);
-      this.totalRegistro = lanc.totalElements;
-      console.log(this.totalRegistro);
-      this.lancamentos = lanc['content'];
-    });
+    this.service
+      .listar(this.filtro)
+      .then((lanc) => {
+        console.log(lanc);
+        this.totalRegistro = lanc.totalElements;
+        console.log(this.totalRegistro);
+        this.lancamentos = lanc['content'];
+      })
+      .catch((erro) => this.error.handleError(erro));
   }
 
   aoMudarPagina(event: LazyLoadEvent) {
@@ -46,18 +51,21 @@ export class LancamentosPesquisaComponent implements OnInit {
       header: 'Confirmação',
       icon: 'pi pi-exclamation-triangle',
       accept: async () => {
-        await this.service.delete(lancamento.id).then(() => {
-          if (this.gride.first === 0) {
-            this.listar();
-          } else {
-            this.gride.first = 0;
-          }
-          this.msgService.add({
-            severity: 'info',
-            summary: 'Confirmed',
-            detail: 'Sucesso!',
-          });
-        });
+        await this.service
+          .delete(lancamento.id)
+          .then(() => {
+            if (this.gride.first === 0) {
+              this.listar();
+            } else {
+              this.gride.first = 0;
+            }
+            this.msgService.add({
+              severity: 'info',
+              summary: 'Confirmed',
+              detail: 'Sucesso!',
+            });
+          })
+          .catch((erro) => this.error.handleError(erro));
       },
     });
   }

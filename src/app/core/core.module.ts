@@ -1,3 +1,4 @@
+import { ErrorHandlerService } from './error-handler.service';
 import { AuthService } from './../seguranca/auth.service';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -10,7 +11,8 @@ import { JwtHelperService } from '@auth0/angular-jwt';
   exports: [NavbarComponent],
   providers: [
     AuthService,
-    JwtHelperService
+    JwtHelperService,
+    ErrorHandlerService
   ],
 })
 export class CoreModule {}
