@@ -1,25 +1,24 @@
 <app-navbar *ngIf="exibindoNavbar()"></app-navbar>
-<app-lancamentos-pesquisa></app-lancamentos-pesquisa>
+<app-pessoas-pesquisa></app-pessoas-pesquisa>
 <!--
   <app-login-form></app-login-form>
-  <app-pessoas-pesquisa></app-pessoas-pesquisa>
+  <app-lancamentos-pesquisa></app-lancamentos-pesquisa>
   <app-pessoa-cadastro></app-pessoa-cadastro>
   <app-lancamento-cadastro></app-lancamento-cadastro>
 -->
 <div class="card flex justify-content-center gap-2">
-  <p-toast>
-    <p-confirmDialog [style]="{ width: '50vw' }" #confirmacao>
-      <p-button
-        (click)="(confirmacao.accept)"
-        icon="pi pi-check"
-        label="Sim"
-      ></p-button>
-      <p-button
-        (click)="(confirmacao.reject)"
-        icon="pi pi-times"
-        label="Não"
-        class="p-button-danger"
-      ></p-button>
-    </p-confirmDialog>
-  </p-toast>
+  <p-toast></p-toast>
+  <p-confirmDialog [style]="{ width: '50vw' }" #confirmacao>
+    <p-button
+      (click)="(confirmacao.accept)"
+      icon="pi pi-check"
+      label="Sim"
+    ></p-button>
+    <p-button
+      (click)="(confirmacao.reject)"
+      icon="pi pi-times"
+      label="Não"
+      class="p-button-danger"
+    ></p-button>
+  </p-confirmDialog>
 </div>

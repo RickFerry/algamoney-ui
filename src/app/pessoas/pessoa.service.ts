@@ -27,7 +27,11 @@ export class PessoaService {
     return await this.http.get(this.urlApi, { params }).toPromise();
   }
 
-  async listarTodas(): Promise<any>{
+  async listarTodas(): Promise<any> {
     return await this.http.get(this.urlApi).toPromise();
+  }
+
+  async delete(codigo: number): Promise<any> {
+    return await this.http.delete(`${this.urlApi}/${codigo}`).toPromise();
   }
 }
