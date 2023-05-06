@@ -36,19 +36,22 @@
         <p-inputNumber mode="currency" currency="BRL" placeholder="0,00" ngModel name="valor" #valor="ngModel"
           [required]="true"></p-inputNumber>
       </div>
+
       <div class="col-12 md:col-6 p-fluid">
         <label>Categoria</label>
         <p-dropdown [options]="categorias" placeholder="Selecione" #categoria [required]="true"></p-dropdown>
       </div>
+
       <div class="col-12 md:col-6 p-fluid">
         <label>Pessoa</label>
         <p-dropdown [options]="pessoas" placeholder="Selecione" [filter]="true" #pessoa [required]="true"></p-dropdown>
-
       </div>
+
       <div class="col-12 p-fluid">
         <label>Observação</label>
         <textarea pInputTextarea rows="3"></textarea>
       </div>
+
       <div class="col-12">
         <button pButton type="submit" label="Salvar" [disabled]="lancamentoForm.invalid"></button>
         <button pButton type="button" label="Novo" class="p-button-info"></button>
