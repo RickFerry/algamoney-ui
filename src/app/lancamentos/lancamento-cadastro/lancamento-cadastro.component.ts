@@ -1,3 +1,4 @@
+import { PessoaService } from './../../pessoas/pessoa.service';
 import { ErrorHandlerService } from 'src/app/core/error-handler.service';
 import { CategoriaService } from './../../categorias/categoria.service';
 import { Component, OnInit } from '@angular/core';
@@ -9,19 +10,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LancamentoCadastroComponent implements OnInit {
   categorias = [];
+  pessoas = [];
 
   tipos = [
     { label: 'Receita', value: 'RECEITA' },
     { label: 'Despesa', value: 'DESPESA' },
   ];
 
-  pessoas = [
-    { label: 'João da Silva', value: 4 },
-    { label: 'Sebastião Souza', value: 9 },
-    { label: 'Maria Abadia', value: 3 },
-  ];
   constructor(
-    private service: CategoriaService,
+    private categoriaService: CategoriaService,
+    private pessoaService: PessoaService,
     private handler: ErrorHandlerService
   ) {}
 
@@ -29,14 +27,26 @@ export class LancamentoCadastroComponent implements OnInit {
     this.carregarCategorias();
   }
 
+  async listar() {
+    return await this.pessoaService
+      .listarTodas()
+      .then((pessoa) => {
+        this.pessoas = pessoa['content'].map((p: any) => ({
+          label: p.nome,
+          value: p.id,
+        }));
+      })
+      .catch((erro) => this.handler.handleError(erro));
+  }
+
   async carregarCategorias() {
-    return await this.service
+    return await this.categoriaService
       .listar()
       .then((categorias) => {
         console.log(categorias['content']);
         this.categorias = categorias['content'].map((c: any) => ({
           label: c.nome,
-          value: c.id
+          value: c.id,
         }));
         console.log(this.categorias);
       })
