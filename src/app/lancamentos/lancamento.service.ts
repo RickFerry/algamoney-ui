@@ -1,3 +1,4 @@
+import { Lancamento } from 'src/app/models/modelos';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import * as moment from 'moment';
@@ -21,8 +22,8 @@ export class LancamentoService {
   async listar(filtro: LancamentoFiltro): Promise<any> {
     let params = new HttpParams();
 
-    params = params.set('page', filtro.pagina)
-    params = params.set('size', filtro.itensPorPagina)
+    params = params.set('page', filtro.pagina);
+    params = params.set('size', filtro.itensPorPagina);
 
     if (filtro.descricao) {
       params = params.set('descricao', filtro.descricao);
@@ -42,7 +43,14 @@ export class LancamentoService {
     return await this.http.get(this.urlApi, { params }).toPromise();
   }
 
-  async delete(codigo: number): Promise<any>{
-      return await this.http.delete(`${this.urlApi}/${codigo}`).toPromise();
+  async delete(codigo: number): Promise<any> {
+    return await this.http.delete(`${this.urlApi}/${codigo}`).toPromise();
+  }
+
+  async adicionar(lancamento: Lancamento): Promise<Lancamento> {
+    return await this.http
+      .post(this.urlApi, JSON.stringify(lancamento))
+      .toPromise()
+      .then((resp: any) => JSON.parse(resp));
   }
 }
